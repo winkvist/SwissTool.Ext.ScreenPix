@@ -1,0 +1,54 @@
+﻿<controls:MetroDialogWindow x:Class="SwissTool.Ext.ScreenPix.Views.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:SwissTool.Framework.UI.Controls;assembly=SwissTool.Framework.UI"
+    xmlns:controls1="http://metro.mahapps.com/winfx/xaml/controls"
+    Title="ScreenPix settings" 
+    Topmost="True" 
+    ShowInTaskbar="False" 
+    WindowStartupLocation="CenterScreen"
+    Heading="ScreenPix settings" 
+    SubHeading="This section lets you customize ScreenPix" 
+    ShowCancelButton="True" 
+    AcceptCommand="{Binding Path=AcceptCommand}" 
+    CancelCommand="{Binding Path=CloseCommand}"
+    Width="400"
+    Height="380"
+    ResizeMode="NoResize">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding Path=CloseCommand}" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+    </Window.Resources>
+    <Grid Margin="7 0 7 0">
+        <TabControl>
+            <TabItem Header="General">
+                <StackPanel Margin="5">
+                    <GroupBox Header="Image" Margin="0" Padding="5">
+                    <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Padding="2" Width="140">Default file extension</Label>
+                                <ComboBox ItemsSource="{Binding FileExtensions}" SelectedItem="{Binding Path=DefaultFileExtension, Mode=TwoWay}" Width="80"></ComboBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,4,0,0" Visibility="{Binding IsImageQualityVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                <Label Padding="2" Width="140">Image quality level</Label>
+                                <controls1:NumericUpDown Width="80" Height="22" Value="{Binding Path=SettingsCopy.ImageQuality, Mode=TwoWay}" Minimum="1" Maximum="100" />
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="Defaults" Margin="0,5,0,0" Padding="5">
+                    <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                        
+                            
+                        <Label Padding="2" Width="140">Toolbar location</Label>
+                            <Label Padding="2" Margin="0,0,10,0" Width="95" Content="{Binding ToolbarLocationLabel}" />
+                            <Button Width="80" Command="{Binding ResetToolbarLocationCommand}">Reset</Button>
+                            
+                    </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</controls:MetroDialogWindow>

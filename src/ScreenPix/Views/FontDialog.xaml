@@ -1,0 +1,68 @@
+﻿<controls:MetroDialogWindow x:Class="SwissTool.Ext.ScreenPix.Views.FontDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Font settings" 
+        Heading="Font settings"
+        SubHeading="This section lets you customize the font family, size and style"
+        Height="358"
+        Width="600"
+        WindowStartupLocation="CenterOwner"
+
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True" 
+        mc:Ignorable="d" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:controls="clr-namespace:SwissTool.Framework.UI.Controls;assembly=SwissTool.Framework.UI"
+        xmlns:utilities1="clr-namespace:SwissTool.Ext.ScreenPix.Utilities"
+        ShowCancelButton="True" 
+        FocusManager.FocusedElement="{Binding ElementName=FontFamilyListBox}"
+        utilities1:DialogCloser.DialogResult="{Binding Path=DialogResult}"
+        AcceptCommand="{Binding Path=SaveCommand}" 
+        CancelCommand="{Binding Path=CloseCommand}">
+    <controls:MetroDialogWindow.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding Path=CancelCommand}" />
+        <KeyBinding Key="Return" Command="{Binding Path=SaveCommand}" />
+    </controls:MetroDialogWindow.InputBindings>
+    <controls:MetroDialogWindow.Style>
+        <Style TargetType="{x:Type Window}">
+            <EventSetter Event="Loaded" Handler="WindowLoaded" />
+        </Style>
+    </controls:MetroDialogWindow.Style>
+    <Grid Margin="7 0 7 0">
+        <TabControl Margin="5">
+            <TabItem Header="Font">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.5*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Padding="5">Family</Label>
+                    <ListBox x:Name="FontFamilyListBox" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="5 0 5 5" ItemsSource="{Binding Path=FontFamilies}" SelectedItem="{Binding Path=SelectedFontFamily}"></ListBox>
+
+                    <Label Grid.Row="0" Grid.Column="1" Padding="0 5 5 5">Size</Label>
+                    <ListBox x:Name="FontSizeListBox" Grid.Row="1" Grid.Column="1" Margin="0 0 5 5" ItemsSource="{Binding Path=FontSizes}" SelectedItem="{Binding Path=SelectedFontSize}"></ListBox>
+
+                    <Label Grid.Row="0" Grid.Column="2" Padding="0 5 5 5">Style</Label>
+                    <ListBox x:Name="FontStyleListBox" Grid.Row="1" Grid.Column="2" Margin="0 0 5 5" ItemsSource="{Binding Path=FontWeightsAndStylesCombined}" SelectedItem="{Binding Path=SelectedWeightAndStyleCombined}"></ListBox>
+
+                    <Label x:Name="SampleText" Grid.Row="2" Grid.Column="1" Padding="0 5 5 5" Grid.ColumnSpan="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                   FontFamily="{Binding Path=SelectedFontFamily}"
+                   FontStyle="{Binding Path=SelectedFontStyle}"
+                   FontWeight="{Binding Path=SelectedFontWeight}"
+                   FontSize="{Binding Path=DisplaySelectedFontSize}"
+                   Margin="0 0 5 5"
+                   >AaBbCc XxYyZz 012345</Label>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</controls:MetroDialogWindow>
+
