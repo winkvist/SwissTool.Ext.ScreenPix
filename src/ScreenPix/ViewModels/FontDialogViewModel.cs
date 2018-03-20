@@ -16,7 +16,7 @@ namespace SwissTool.Ext.ScreenPix.ViewModels
     using System.Windows.Media;
 
     using SwissTool.Ext.ScreenPix.Managers;
-    using SwissTool.Framework.UI.Commanding;
+    using SwissTool.Framework.Commanding;
     using SwissTool.Framework.UI.Infrastructure;
 
     /// <summary>

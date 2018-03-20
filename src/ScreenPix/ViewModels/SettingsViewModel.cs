@@ -15,7 +15,7 @@ namespace SwissTool.Ext.ScreenPix.ViewModels
 
     using SwissTool.Ext.ScreenPix.Managers;
     using SwissTool.Ext.ScreenPix.Models;
-    using SwissTool.Framework.UI.Commanding;
+    using SwissTool.Framework.Commanding;
     using SwissTool.Framework.UI.Infrastructure;
     using SwissTool.Framework.Utilities.Serialization;
 

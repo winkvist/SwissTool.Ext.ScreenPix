@@ -20,9 +20,9 @@ namespace SwissTool.Ext.ScreenPix
     using SwissTool.Ext.ScreenPix.Utilities;
     using SwissTool.Ext.ScreenPix.ViewModels;
     using SwissTool.Ext.ScreenPix.Views;
+    using SwissTool.Framework.Commanding;
     using SwissTool.Framework.Enums;
     using SwissTool.Framework.Infrastructure;
-    using SwissTool.Framework.UI.Commanding;
     using SwissTool.Framework.UI.Managers;
 
     /// <summary>
