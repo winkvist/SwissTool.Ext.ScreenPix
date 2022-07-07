@@ -47,8 +47,8 @@
         </Style>
 
         <Style TargetType="{x:Type ToolBar}" x:Key="ToolBarStyle">
-            <Setter Property="Background" Value="{DynamicResource WhiteBrush}" />
-            <Setter Property="Foreground" Value="{DynamicResource BlackBrush}" />
+            <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
+            <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
             <Setter Property="Opacity" Value="0.8" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="BorderBrush">
@@ -508,7 +508,7 @@
         </ToolBar>
 
         <Border Name="PreviewText" Panel.ZIndex="3" 
-                Background="{DynamicResource WhiteBrush}" 
+                Background="{DynamicResource MahApps.Brushes.ThemeBackground}" 
                 Canvas.Left="{Binding Path=PreviewPanelLocationX}" 
                 Canvas.Top="{Binding Path=PreviewPanelLocationY}" 
                 Width="230" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" CornerRadius="0" BorderThickness="1" BorderBrush="Gray">
@@ -530,7 +530,7 @@
                     </Image.Style>
                 </Image>
 
-                <Label Foreground="{DynamicResource BlackBrush}" FontFamily="{DynamicResource ContentFontFamily}" FontSize="{DynamicResource NormalFontSize}" HorizontalAlignment="Center" VerticalAlignment="Center">SCREENSHOT PREVIEW</Label>
+                <Label Foreground="{DynamicResource MahApps.Brushes.ThemeForeground}" FontFamily="{DynamicResource MahApps.Fonts.Family.Control}" FontSize="{DynamicResource MahApps.Font.Size.Default}" HorizontalAlignment="Center" VerticalAlignment="Center">SCREENSHOT PREVIEW</Label>
             </StackPanel>
         </Border>
         
