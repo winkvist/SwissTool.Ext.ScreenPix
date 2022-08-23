@@ -61,7 +61,7 @@ namespace SwissTool.Ext.ScreenPix.Views
 
             this.loading = false;
           
-            var colorBrush = (Brush)(this.FindResource("BlackBrush") ?? new SolidColorBrush(Colors.Black));
+            var colorBrush = (Brush)(this.FindResource("MahApps.Brushes.ThemeForeground") ?? new SolidColorBrush(Colors.Black));
 
             for (var i = 2; i <= 8; i++)
             {
