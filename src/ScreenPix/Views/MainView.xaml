@@ -40,10 +40,14 @@
             <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2" Storyboard.TargetName="SubToolBar" />
         </Storyboard>
 
-        <Style TargetType="{x:Type ToggleButton}">
-            <Setter Property="Margin" Value="3" />
-            <Setter Property="Height" Value="22" />
-            <Setter Property="Width" Value="22" />
+        <Style TargetType="{x:Type ButtonBase}" x:Key="ToolBarButton">
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="Height" Value="24" />
+            <Setter Property="Width" Value="24" />
+        </Style>
+
+        <Style TargetType="{x:Type ButtonBase}" x:Key="SubToolBarButton">
+            <Setter Property="Padding" Value="2" />
         </Style>
 
         <Style TargetType="{x:Type ToolBar}" x:Key="ToolBarStyle">
@@ -174,7 +178,7 @@
             </TextBlock>
             <Separator />
 
-            <Button Width="24" Height="24" Click="NewButtonClick" ToolTip="New workspace" IsEnabled="{Binding ElementName=drawingCanvas, Path=IsDirty, Mode=OneWay}" Focusable="False">
+            <Button Style="{StaticResource ToolBarButton}" Click="NewButtonClick" ToolTip="New workspace" IsEnabled="{Binding ElementName=drawingCanvas, Path=IsDirty, Mode=OneWay}" Focusable="False">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -191,8 +195,8 @@
                     </Image.Style>
                 </Image>
             </Button>
-            
-            <Button Width="24" Height="24" Click="SaveButtonClick" ToolTip="Save workspace" Focusable="False">
+
+            <Button Style="{StaticResource ToolBarButton}" Click="SaveButtonClick" ToolTip="Save workspace" Focusable="False">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -207,7 +211,7 @@
                 </Image>
             </Button>
 
-            <Button Width="24" Height="24" Click="PrintButtonClick" ToolTip="Print workspace">
+            <Button Style="{StaticResource ToolBarButton}" Click="PrintButtonClick" ToolTip="Print workspace">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -223,7 +227,7 @@
             </Button>
             
             <Separator />
-            <Button Width="24" Height="24" Click="CopyToClipboardButtonClick" ToolTip="Copy workspace to clipboard" IsEnabled="{Binding ElementName=drawingCanvas, Path=CanCopyToClipboard, Mode=OneWay}" Focusable="False">
+            <Button Style="{StaticResource ToolBarButton}" Click="CopyToClipboardButtonClick" ToolTip="Copy workspace to clipboard" IsEnabled="{Binding ElementName=drawingCanvas, Path=CanCopyToClipboard, Mode=OneWay}" Focusable="False">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -241,7 +245,7 @@
                 </Image>
             </Button>
 
-            <Button Width="24" Height="24" Click="UndoButtonClick" ToolTip="Undo" IsEnabled="{Binding ElementName=drawingCanvas, Path=CanUndo, Mode=OneWay}" Focusable="False">
+            <Button Style="{StaticResource ToolBarButton}" Click="UndoButtonClick" ToolTip="Undo" IsEnabled="{Binding ElementName=drawingCanvas, Path=CanUndo, Mode=OneWay}" Focusable="False">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -259,7 +263,7 @@
                 </Image>
             </Button>
 
-            <Button Width="24" Height="24" Click="RedoButtonClick" ToolTip="Redo" IsEnabled="{Binding ElementName=drawingCanvas, Path=CanRedo, Mode=OneWay}" Focusable="False">
+            <Button Style="{StaticResource ToolBarButton}" Click="RedoButtonClick" ToolTip="Redo" IsEnabled="{Binding ElementName=drawingCanvas, Path=CanRedo, Mode=OneWay}" Focusable="False">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -278,7 +282,7 @@
             </Button>
 
             <Separator />
-            <ToggleButton Name="buttonToolPointer"  ToolTip="Pointer" Tag="Pointer" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Pointer}" PreviewMouseDown="ButtonToolPreviewMouseDown" Height="24" Width="24">
+            <ToggleButton Style="{StaticResource ToolBarButton}" Name="buttonToolPointer"  ToolTip="Pointer" Tag="Pointer" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Pointer}" PreviewMouseDown="ButtonToolPreviewMouseDown">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -293,8 +297,8 @@
                 </Image>
             </ToggleButton>
 
-            <ToggleButton Name="buttonToolRectangularMarquee"  ToolTip="Rectangular Marquee" Tag="RectangularMarquee" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=RectangularMarquee}" PreviewMouseDown="ButtonToolPreviewMouseDown" Height="24" Width="24">
-                <Image>
+            <ToggleButton Style="{StaticResource ToolBarButton}" Name="buttonToolRectangularMarquee"  ToolTip="Rectangular Marquee" Tag="RectangularMarquee" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=RectangularMarquee}" PreviewMouseDown="ButtonToolPreviewMouseDown">
+                <Image Stretch="Fill">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Setter Property="Source" Value="{StaticResource IconRectangularMarquee}" />
@@ -307,8 +311,9 @@
                     </Image.Style>
                 </Image>
             </ToggleButton>
-                
-            <ToggleButton Name="buttonToolRectangle" ToolTip="Rectangle" Tag="Rectangle" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Rectangle}" PreviewMouseDown="ButtonToolPreviewMouseDown" Height="24" Width="24">
+
+            <ToggleButton Style="{StaticResource ToolBarButton}" Name="buttonToolRectangle" ToolTip="Rectangle" Tag="Rectangle" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Rectangle}" PreviewMouseDown="ButtonToolPreviewMouseDown">
+                <DockPanel>
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -321,9 +326,10 @@
                         </Style>
                     </Image.Style>
                 </Image>
+                </DockPanel>
             </ToggleButton>
 
-            <ToggleButton Name="buttonToolEllipse" ToolTip="Ellipse" Tag="Ellipse" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Ellipse}" PreviewMouseDown="ButtonToolPreviewMouseDown" Height="24" Width="24">
+            <ToggleButton Style="{StaticResource ToolBarButton}" Name="buttonToolEllipse" ToolTip="Ellipse" Tag="Ellipse" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Ellipse}" PreviewMouseDown="ButtonToolPreviewMouseDown">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -338,7 +344,7 @@
                 </Image>
             </ToggleButton>
 
-            <ToggleButton Name="buttonToolLine" ToolTip="Line" Tag="Line" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Line}" PreviewMouseDown="ButtonToolPreviewMouseDown" Height="24" Width="24">
+            <ToggleButton Style="{StaticResource ToolBarButton}" Name="buttonToolLine" ToolTip="Line" Tag="Line" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Line}" PreviewMouseDown="ButtonToolPreviewMouseDown">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -353,7 +359,7 @@
                 </Image>
             </ToggleButton>
 
-            <ToggleButton Name="buttonToolPencil" ToolTip="Pencil" Tag="PolyLine" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=PolyLine}" PreviewMouseDown="ButtonToolPreviewMouseDown" Height="24" Width="24">
+            <ToggleButton Style="{StaticResource ToolBarButton}" Name="buttonToolPencil" ToolTip="Pencil" Tag="PolyLine" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=PolyLine}" PreviewMouseDown="ButtonToolPreviewMouseDown">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -368,7 +374,7 @@
                 </Image>
             </ToggleButton>
 
-            <ToggleButton Name="buttonToolText" ToolTip="Text" Tag="Text" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Text}" PreviewMouseDown="ButtonToolPreviewMouseDown" Height="24" Width="24">
+            <ToggleButton Style="{StaticResource ToolBarButton}" Name="buttonToolText" ToolTip="Text" Tag="Text" IsChecked="{Binding ElementName=drawingCanvas, Path=Tool, Mode=OneWay,Converter={StaticResource convToolType}, ConverterParameter=Text}" PreviewMouseDown="ButtonToolPreviewMouseDown">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -385,7 +391,7 @@
 
             <Separator />
 
-            <Button Width="24" Height="24" Command="{Binding Path=ShowSettingsWindowCommand}" ToolTip="Settings" Focusable="False">
+            <Button Style="{StaticResource ToolBarButton}" Command="{Binding Path=ShowSettingsWindowCommand}" ToolTip="Settings" Focusable="False">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -400,7 +406,7 @@
                 </Image>
             </Button>
 
-            <Button Width="24" Height="24" Command="{Binding Path=ShowAboutWindowCommand}" ToolTip="About" Focusable="False">
+            <Button Style="{StaticResource ToolBarButton}" Command="{Binding Path=ShowAboutWindowCommand}" ToolTip="About" Focusable="False">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -416,8 +422,8 @@
             </Button>
 
             <Separator />
-            
-            <Button Width="24" Height="24" Click="ExitButtonClick" ToolTip="Close window">
+
+            <Button Style="{StaticResource ToolBarButton}" Click="ExitButtonClick" ToolTip="Close window">
                 <Image>
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
@@ -445,7 +451,7 @@
                  Padding="0 4 0 0" 
                  Visibility="{Binding Path=ShowToolPropertyPanel, Converter={StaticResource boolToVisibilityConverter}}" 
                  Opacity="0">
-            <Button Name="buttonPropertiesFont" ToolTip="Font" PreviewMouseDown="ButtonPropertiesFontPreviewMouseDown" Visibility="{Binding Path=DisplayFontSettings, Converter={StaticResource boolToVisibilityConverter}}" Width="106" Height="18" Margin="2 0 0 0">
+            <Button Style="{StaticResource SubToolBarButton}" Name="buttonPropertiesFont" ToolTip="Font" PreviewMouseDown="ButtonPropertiesFontPreviewMouseDown" Visibility="{Binding Path=DisplayFontSettings, Converter={StaticResource boolToVisibilityConverter}}" Width="106" Height="18" Margin="2 0 0 0">
                 <!-- Font Family Name (size) -->
                 <DockPanel>
 
@@ -462,11 +468,11 @@
                         </Image.Style>
                     </Image>
 
-                    <StackPanel Orientation="Horizontal" Margin="0,-1,0,0">
+                    <StackPanel Orientation="Horizontal" Margin="0,-2,0,0">
                         <TextBlock Text="{Binding ElementName=drawingCanvas, Path=TextFontFamilyName, Mode=OneWay}" Width="60" FontSize="10" />
-                        <TextBlock Text=" (" />
+                        <TextBlock Text=" (" FontSize="10" />
                         <TextBlock Text="{Binding ElementName=drawingCanvas, Path=TextFontSize, Mode=OneWay}" FontSize="10" />
-                        <TextBlock Text=")" />
+                        <TextBlock Text=")" FontSize="10" />
                     </StackPanel>
                 </DockPanel>
             </Button>
@@ -495,10 +501,10 @@
 
             <Separator Margin="3 0 0 0" />
             
-            <ComboBox Name="comboPropertiesLineColor" ToolTip="Line color" Height="18" Width="47" IsEditable="False" Margin="5,0,5,0" SelectionChanged="ComboPropertiesLineColorSelectionChanged" Focusable="False" Visibility="{Binding Path=DisplayColorSettings, Converter={StaticResource boolToVisibilityConverter}}">
+            <ComboBox Name="comboPropertiesLineColor" ToolTip="Line color" Height="18" Width="50" IsEditable="False" Margin="5,0,8,0" SelectionChanged="ComboPropertiesLineColorSelectionChanged" Focusable="False" Visibility="{Binding Path=DisplayColorSettings, Converter={StaticResource boolToVisibilityConverter}}">
                 <ComboBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ComboBoxItem}">
-                        <Setter Property="Height" Value="12" />
+                        <Setter Property="Height" Value="14" />
                         <Setter Property="Margin" Value="2" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
                         <Setter Property="HorizontalContentAlignment" Value="Center" />
